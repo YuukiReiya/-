@@ -9,6 +9,7 @@
 #include "Singleton/Sample1.h"
 #include "Singleton/Sample2.h"
 #include "Adapter/AdapterSample.h"
+#include "Visitor/VisitorSample.h"
 
 /*!
 	@using	std
@@ -27,7 +28,7 @@ using namespace GoF;
 	@brief	シングルトンのサンプルコード
 	@detail	コメントアウトでON/OFF切り替えが可能
 */
-#define SINGLETON
+//#define SINGLETON
 
 /*!
 	@def	ADAPTER
@@ -35,6 +36,13 @@ using namespace GoF;
 	@detail	コメントアウトでON/OFF切り替えが可能
 */
 #define ADAPTER
+
+/*!
+	@def	VIVITOR
+	@brief	ビジターのサンプルコード
+	@detail	コメントアウトでON/OFF切り替えが可能
+*/
+#define VISITOR
 
 //NOTE:	プログラムのエントリーポイント(メイン関数)
 int main()
@@ -98,8 +106,8 @@ int main()
 	cout << endl;
 	cout<< "↓アダプターのサンプルコード↓" << endl;
 	//	変数を別に定義(理由は後述)
-	Adapter::CPlayer*pPlayer = new Adapter::CPlayer;
-	cout << "PlayerのアイテムID:" << pPlayer->GetItemCode() << endl;
+	Adapter::CPlayer*pAdapterPlayer = new Adapter::CPlayer;
+	cout << "PlayerのアイテムID:" << pAdapterPlayer->GetItemCode() << endl;
 
 	//	アダプターでダウンキャスト
 	Adapter::CItemCollector*pItemCollector = new Adapter::CAdapter;
@@ -107,15 +115,32 @@ int main()
 
 	//	これで"Player"側では宣言していないけど"GetItem"関数を呼んだことになる
 	//	※上記のように変数を別で定義してしまった場合は当然、インスタンスが違うので値は別になる
-	//	　ex)pPlayer->GetItemCode() ≠ pItemCollector->GetItemCode();
+	//	　ex)pAdapterPlayer->GetItemCode() ≠ pItemCollector->GetItemCode();
 	pItemCollector->GetItem();
-	cout << "PlayerのアイテムID:" << pPlayer->GetItemCode() << endl;
+	cout << "PlayerのアイテムID:" << pAdapterPlayer->GetItemCode() << endl;
 
 	//	メモリ開放
 	delete pItemCollector;
-	delete pPlayer;
+	delete pAdapterPlayer;
 #endif // ADAPTER
 #pragma endregion
+
+#pragma region ビジター
+#ifdef VISITOR
+
+	//Visitor::RangeInObject* rio = new Visitor::RangeInObject;
+	//Visitor::CPlayer* pVisitorPlayer = new Visitor::CPlayer;
+	//Visitor::CEnemy* pVisitEnemy = new Visitor::CEnemy;
+	//Visitor::CItem* pVisitorItem = new Visitor::CItem;
+
+	//	"プレイヤー" : "敵"
+	//rio->VisitPlayer(pVisitorPlayer);
+
+
+
+#endif // VISITOR
+#pragma endregion
+
 
 
 	//	改行を挿入しとく

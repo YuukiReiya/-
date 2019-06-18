@@ -19,6 +19,9 @@
     <Filter Include="Adapter">
       <UniqueIdentifier>{653a0ac4-073f-4d47-843a-244dff6cadf5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Visitor">
+      <UniqueIdentifier>{40a95b76-48c4-48cf-a575-0cb97ba09097}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="sources\AbstractFactory.h">
@@ -38,6 +41,9 @@
     </ClInclude>
     <ClInclude Include="sources\Adapter\AdapterSample.h">
       <Filter>Adapter</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\Visitor\VisitorSample.h">
+      <Filter>Visitor</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
