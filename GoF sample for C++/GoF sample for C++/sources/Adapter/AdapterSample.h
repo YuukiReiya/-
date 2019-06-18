@@ -109,7 +109,7 @@ namespace GoF {
 			/*!
 				@brief	コンストラクタ
 			*/
-			CAdapter() = default;
+			CAdapter() :CItemCollector(), CPlayer() {}
 
 			/*!
 				@brief	デストラクタ
