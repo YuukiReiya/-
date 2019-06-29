@@ -34,7 +34,7 @@
 	//	 public:
 	//	 // 装備する
 	//	 void equip(Player& p){ p.weapon = this; }
-	//	 void equip(Enemy& e){ e.weapon = this; }
+	//	 void equip(AbstractEnemy& e){ e.weapon = this; }
 	//	 }
 
 	//↑こういったコードは無駄が多く、修正が効きにくいのでやめましょう！
@@ -133,6 +133,10 @@ namespace GoF {
 				pMain(pMain),pSub(sub),pMeel(meel) {}
 			~CAbstractFactory() = default;
 			virtual void Create()abstract;
+
+			IWeapon*GetMainWeapon() { return pMain; }
+			IWeapon*GetSubWeapon() { return pSub; }
+			IWeapon*GetMeelWeapon() { return pMeel; }
 		private:
 			IWeapon*pMain;
 			IWeapon*pSub;
@@ -169,7 +173,12 @@ namespace GoF {
 			CGundam() = default;
 			~CGundam() = default;
 
-			void ICharacter::equip(CAbstractFactory* factory) {factory.};
+			void ICharacter::equip(CAbstractFactory* factory) { 
+				factory->Create(); 
+				m_pMainWeapon = factory->GetMainWeapon();
+				m_pSubWeapon = factory->GetSubWeapon();
+				m_pMeleeWeapon = factory->GetMeelWeapon();
+			};
 		private:
 			IWeapon*m_pMainWeapon;	//主兵装
 			IWeapon*m_pSubWeapon;	//副兵装

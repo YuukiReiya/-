@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="sources\AbstractFactory.h" />
+    <ClInclude Include="sources\AbstractFactory\AbstractFactorySample.h" />
     <ClInclude Include="sources\Adapter\AdapterSample.h" />
     <ClInclude Include="sources\CSample.h" />
     <ClInclude Include="sources\FactoryMethod\FactoryMethodSample.h" />

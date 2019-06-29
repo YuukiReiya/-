@@ -33,7 +33,7 @@ namespace Inheritance {
 			void Move();
 
 			/*!
-				@fn		Jump
+				@fn		Damage
 				@brief	ジャンプメソッド
 			*/
 			void Jump();
@@ -78,7 +78,7 @@ namespace Inheritance {
 			}
 
 			/*!
-				@fn		Jump
+				@fn		Damage
 				@brief	ジャンプメソッド
 			*/
 			inline void ICharacter::Jump() {
@@ -123,7 +123,7 @@ namespace Inheritance {
 			}
 
 			/*!
-				@fn		Jump
+				@fn		Damage
 				@brief	ジャンプメソッド
 			*/
 			inline void ICharacter::Jump() {

@@ -25,6 +25,9 @@
     <Filter Include="FactoryMethod">
       <UniqueIdentifier>{07703d6e-c639-4a24-bb5d-f00b28043184}</UniqueIdentifier>
     </Filter>
+    <Filter Include="AbstractFactory">
+      <UniqueIdentifier>{6797cd7a-f9ed-4764-89a9-a23e453b23bc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="sources\AbstractFactory.h">
@@ -50,6 +53,9 @@
     </ClInclude>
     <ClInclude Include="sources\FactoryMethod\FactoryMethodSample.h">
       <Filter>FactoryMethod</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\AbstractFactory\AbstractFactorySample.h">
+      <Filter>AbstractFactory</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

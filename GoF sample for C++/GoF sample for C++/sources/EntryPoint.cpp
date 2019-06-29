@@ -10,6 +10,7 @@
 #include "Singleton/Sample2.h"
 #include "Adapter/AdapterSample.h"
 #include "FactoryMethod/FactoryMethodSample.h"
+#include "AbstractFactory/AbstractFactorySample.h"
 #include "Visitor/VisitorSample.h"
 
 /*!
@@ -36,14 +37,28 @@ using namespace GoF;
 	@brief	アダプターのサンプルコード
 	@detail	コメントアウトでON/OFF切り替えが可能
 */
-#define ADAPTER
+//#define ADAPTER
 
 /*!
 	@def	FACTORY_METHOD
 	@brief	ファクトリーメソッドのサンプルコード
 	@detail	コメントアウトでON/OFF切り替えが可能
 */
-#define FACTORY_METHOD
+//#define FACTORY_METHOD
+
+/*!
+	@def	ABSTRACT_FACTORY
+	@brief	アブストラクトファクトリーのサンプルコード
+	@detail	コメントアウトでON/OFF切り替えが可能
+*/
+//#define ABSTRACT_FACTORY
+
+/*!
+	@def	ITERATOR
+	@brief	イテレータのサンプルコード
+	@detail	コメントアウトでON/OFF切り替えが可能
+*/
+//#define ITERATOR
 
 /*!
 	@def	VIVITOR
@@ -174,6 +189,123 @@ int main()
 	cout << fileFactory->GetFileData()[2]->GetData() << endl;//.mdサンプルと同じ
 
 #endif // FACTORY_METHOD
+#pragma endregion
+
+#pragma region アブストラクトファクトリー
+#ifdef ABSTRACT_FACTORY
+
+	cout << endl;
+	cout << "↓アブストラクトファクトリーのサンプルコード↓" << endl;
+	AbstractFactory::CPlayer* pAbstractFactoryPlayer = new AbstractFactory::CPlayer;
+	AbstractFactory::CFriend* pAbstractFactoryFriend = new AbstractFactory::CFriend;
+	AbstractFactory::CMobEnemy* pAbstractFactoryMobEnemy = new AbstractFactory::CMobEnemy;
+	AbstractFactory::CBossEnemy* pAbstractFactoryBossEnemy = new AbstractFactory::CBossEnemy;
+
+	//	移動処理
+	pAbstractFactoryPlayer->Move();
+	cout << endl;
+	pAbstractFactoryFriend->Move();
+	cout << endl;
+	pAbstractFactoryMobEnemy->Move();
+	cout << endl;
+	pAbstractFactoryBossEnemy->Move();
+	cout << endl;
+
+
+	//	攻撃処理
+	pAbstractFactoryPlayer->Attack();
+	cout << endl;
+	pAbstractFactoryFriend->Attack();
+	cout << endl;
+	pAbstractFactoryMobEnemy->Attack();
+	cout << endl;
+	pAbstractFactoryBossEnemy->Attack();
+	cout << endl;
+
+	//	ダメージ処理
+	pAbstractFactoryPlayer->Damage();
+	cout << endl;
+	pAbstractFactoryFriend->Damage();
+	cout << endl;
+	pAbstractFactoryMobEnemy->Damage();
+	cout << endl;
+	pAbstractFactoryBossEnemy->Damage();
+	cout << endl;
+
+	//	インスタンスの削除はイテレータの後!!
+
+#endif // ABSTRACT_FACTORY
+#pragma endregion
+
+#pragma region イテレータ
+#ifdef ITERATOR
+	cout << endl;
+	cout << "↓イテレータのサンプルコード↓" << endl;
+
+	//アブストラクトファクトリーのサンプルコードコードを使う
+#ifdef ABSTRACT_FACTORY
+
+	vector<AbstractFactory::ICharacter*>pCharacters;
+
+	//	キャラクターの派生クラスを可変長リストに詰め込む
+	pCharacters.push_back(pAbstractFactoryPlayer);		//	プレイヤー
+	pCharacters.push_back(pAbstractFactoryFriend);		//	仲間
+	pCharacters.push_back(pAbstractFactoryMobEnemy);	//	モブ
+	pCharacters.push_back(pAbstractFactoryBossEnemy);	//	ボス
+
+	//	キャラクターの移動
+	for (auto it : pCharacters) {
+		it->Move();
+		cout << endl;
+	}
+
+	//	キャラクターの攻撃
+	for (auto it : pCharacters) {
+		it->Attack();
+		cout << endl;
+	}
+
+	//	キャラクターのダメージ
+	for (auto it : pCharacters) {
+		it->Damage();
+		cout << endl;
+	}
+
+	//	メモリ開放
+	delete pAbstractFactoryPlayer;
+	delete pAbstractFactoryFriend;
+	delete pAbstractFactoryMobEnemy;
+	delete pAbstractFactoryBossEnemy;
+#else
+	//	インスタンス
+	vector<AbstractFactory::ICharacter*>pCharacters;
+	pCharacters.push_back(new AbstractFactory::CPlayer);
+	pCharacters.push_back(new AbstractFactory::CFriend);
+	pCharacters.push_back(new AbstractFactory::CMobEnemy);
+	pCharacters.push_back(new AbstractFactory::CBossEnemy);
+
+	//	キャラクターの移動
+	for (auto it : pCharacters) {
+		it->Move();
+		cout << endl;
+	}
+
+	//	キャラクターの攻撃
+	for (auto it : pCharacters) {
+		it->Attack();
+		cout << endl;
+	}
+
+	//	キャラクターのダメージ
+	for (auto it : pCharacters) {
+		it->Damage();
+		cout << endl;
+	}
+
+#endif // ABSTRACT_FACTORY
+	//	要素開放
+	pCharacters.clear();
+#endif // ITERATOR
 #pragma endregion
 
 #pragma region ビジター

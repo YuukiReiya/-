@@ -229,7 +229,7 @@ namespace GoF {
 				@fn		VisitPlayer
 				@brief	Playerの訪問
 
-				NOTE:	今回のケースだと"Player"と"Enemy"はメンバが一緒なので
+				NOTE:	今回のケースだと"Player"と"AbstractEnemy"はメンバが一緒なので
 						正直、"VisitCharacter"でいいけど、突っ込んじゃダメ!
 			*/
 			void VisitPlayer(CPlayer*player) {
@@ -240,9 +240,9 @@ namespace GoF {
 
 			/*!
 				@fn		VisitEnemy
-				@brief	Enemyの訪問
+				@brief	AbstractEnemyの訪問
 
-				NOTE:	今回のケースだと"Player"と"Enemy"はメンバが一緒なので
+				NOTE:	今回のケースだと"Player"と"AbstractEnemy"はメンバが一緒なので
 						正直、"VisitCharacter"でいいけど、突っ込んじゃダメ!
 			*/
 			void VisitEnemy(CEnemy*enemy) {
