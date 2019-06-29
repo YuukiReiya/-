@@ -9,6 +9,7 @@
 #include "Singleton/Sample1.h"
 #include "Singleton/Sample2.h"
 #include "Adapter/AdapterSample.h"
+#include "FactoryMethod/FactoryMethodSample.h"
 #include "Visitor/VisitorSample.h"
 
 /*!
@@ -36,6 +37,13 @@ using namespace GoF;
 	@detail	コメントアウトでON/OFF切り替えが可能
 */
 #define ADAPTER
+
+/*!
+	@def	FACTORY_METHOD
+	@brief	ファクトリーメソッドのサンプルコード
+	@detail	コメントアウトでON/OFF切り替えが可能
+*/
+#define FACTORY_METHOD
 
 /*!
 	@def	VIVITOR
@@ -110,7 +118,7 @@ int main()
 	cout << "PlayerのアイテムID:" << pAdapterPlayer->GetItemCode() << endl;
 
 	//	アダプターでダウンキャスト
-	Adapter::CItemCollector*pItemCollector = new Adapter::CAdapter;
+	Adapter::CItemCollector*pItemCollector = new Adapter::CPlayerAdapter;
 	
 
 	//	これで"Player"側では宣言していないけど"GetItem"関数を呼んだことになる
@@ -123,6 +131,49 @@ int main()
 	delete pItemCollector;
 	delete pAdapterPlayer;
 #endif // ADAPTER
+#pragma endregion
+
+#pragma region ファクトリーメソッド
+#ifdef FACTORY_METHOD
+	cout << endl;
+	cout << "↓ファクトリーメソッドのサンプルコード↓" << endl;
+
+	//	宣言
+	FactoryMethod::AbstractFileData *txt, *csv, *md;
+
+	//txt = new FactoryMethod::TextFileData;
+	//csv = new FactoryMethod::CsvFileData;
+	//md  = new FactoryMethod::MdFileData;
+
+	//NOTE:ファクトリーメソッドを使用することで、
+	//	上記コードが、下記コードへ書き換えることが出来る。
+	//	(動作は同じ)
+	//NOTE:"new"を使ってインスタンス生成すると型名(型)が変わったときに全て編集しないとダメなのを防げる
+	//ex)	下記のような書き換えの必要がなくなる
+	//		txt = FactoryMethod::TextFileData; → = FactoryMethod::CsvFileData;
+	//		csv = FactoryMethod::TextFileData; → = FactoryMethod::CsvFileData;
+	//		md  = FactoryMethod::TextFileData; → = FactoryMethod::CsvFileData;
+	
+	
+	auto fileFactory = new FactoryMethod::CFileFactory;
+	txt = fileFactory->Create("resource/sample.txt");
+	csv = fileFactory->Create("resource/sample.csv");
+	md = fileFactory->Create("resource/sample.md");
+
+	//	表示
+	cout << "インスタンスからアクセス" << endl;
+	cout << txt->GetData() << endl;
+	cout << csv->GetData() << endl;
+	cout << md->GetData() << endl;
+
+	cout << endl << "ファクトリからアクセス" << endl;
+	//NOTE:	Factoryが生成したインスタンスを保持しているため、
+	//		Factoryにアクセスしインスタンスを求めることも可能。
+	cout << fileFactory->GetFileData()[0]->GetData() << endl;//.txtサンプルと同じ
+	cout << fileFactory->GetFileData()[1]->GetData() << endl;//.csvサンプルと同じ
+	cout << fileFactory->GetFileData()[2]->GetData() << endl;//.mdサンプルと同じ
+
+#endif // FACTORY_METHOD
 #pragma endregion
 
 #pragma region ビジター

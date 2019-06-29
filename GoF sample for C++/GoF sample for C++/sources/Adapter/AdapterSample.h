@@ -5,13 +5,125 @@
 	@brief	アダプターのサンプルコード
 
 	NOTE:	実際のゲーム制作を仮定した状況でサンプルコードを作成する
-			Targetに対してAdapterにAdapteeとTargetを多重継承する
+			Targetに対してCAdapterにAdapteeとTargetを多重継承する
 */
 #pragma once
 #include <iostream>
 
 namespace GoF {
 	namespace Adapter {
+
+#pragma region 説明
+
+		/*!
+			@class	CTarget
+			@brief	対象のクラス
+			@detail	機能の追加を考えているが、なんらかの事情で直接いじれないクラス
+					ex)
+						中身が"ブラックボックス","分業中で誰かが作業中"etc...
+
+			NOTE:	中身は空にしときます。
+		*/
+		class CTarget
+		{
+		public:
+			/*!
+				@brief	デフォルトコンストラクタ
+			*/
+			CTarget() = default;
+
+			/*!
+				@brief	デフォルトデストラクタ
+			*/
+			~CTarget() = default;
+
+			//	何らかの処理...
+
+		private:
+
+			//	何らかのメンバ変数
+
+		};
+
+		/*!
+			@interface	IAdaptee
+			@brief		追加処理群(Adaptee)
+			@detail		追加したい機能の関数群を純粋仮想関数で定義
+
+			NOTE:		追加機能を"Func1 ～ Func3"とする。
+						※C++なら未定義でも出来るけど、C#は多重継承禁止だから分ける必要がある。
+		*/
+		__interface IAdaptee
+		{
+			//NOTE:	Interfaceで宣言した関数は全て"純粋仮想関数"と同じ扱い
+
+			/*!
+				@fn		Func1
+				@brief	機能追加関数1
+			*/
+			void Func1();
+
+			/*!
+				@fn		Func2
+				@brief	機能追加関数2
+			*/
+			void Func2();
+
+			/*!
+				@fn		Func3
+				@brief	機能追加関数3
+			*/
+			void Func3();
+		}; 
+
+		/*!
+			@class	CAdapter
+			@brief	対象クラスに機能追加した拡張クラス
+			
+			NOTE:	"Adaptee"と"Target"の多重継承
+		*/
+		class CAdapter:
+			public IAdaptee,private CTarget
+		{
+		public:
+			/*!
+				@brief	デフォルトコンストラクタ
+			*/
+			CAdapter() = default;
+			/*!
+				@brief	デフォルトデストラクタ
+			*/
+			~CAdapter() = default;
+
+			/*!
+				@fn		Func1
+				@brief	機能追加関数1
+
+				NOTE:	Interfaceならアクセス修飾子に依存しない!(public)
+			*/
+			void IAdaptee::Func1() {}
+
+		protected:
+			/*!
+				@fn		Func2
+				@brief	機能追加関数2
+
+				NOTE:	Interfaceならアクセス修飾子に依存しない!(protected)
+			*/
+			void IAdaptee::Func2() {}
+
+		private:
+			/*!
+				@fn		Func3
+				@brief	機能追加関数3
+
+				NOTE:	Interfaceならアクセス修飾子に依存しない!(private)
+			*/
+			void IAdaptee::Func3() {}
+		};
+#pragma endregion
+
+#pragma region サンプル
 
 		/*!
 			@class	CPlayer
@@ -71,7 +183,7 @@ namespace GoF {
 			@author	Bさん
 			@brief	アイテムを獲得するクラス
 
-			NOTE:	実装はAdapterがメイン(Adaptee)
+			NOTE:	実装はCAdapterがメイン(Adaptee)
 		*/
 		class CItemCollector
 		{
@@ -98,23 +210,23 @@ namespace GoF {
 		};
 
 		/*!
-			@class	CAdapter
+			@class	CPlayerAdapter
 			@author	Bさん
 			@brief	BさんがAさんのいじっている"CPlayer"クラスに手を加えないようにアダプターでラッピング
 
 		*/
-		class CAdapter :public CItemCollector, private CPlayer
+		class CPlayerAdapter :public CItemCollector, private CPlayer
 		{
 		public:
 			/*!
 				@brief	コンストラクタ
 			*/
-			CAdapter() :CItemCollector(), CPlayer() {}
+			CPlayerAdapter() :CItemCollector(), CPlayer() {}
 
 			/*!
 				@brief	デストラクタ
 			*/
-			~CAdapter() = default;
+			~CPlayerAdapter() = default;
 
 			/*!
 				@fn		GetItem
@@ -133,6 +245,6 @@ namespace GoF {
 		private:
 
 		};
-
+#pragma endregion
 	}
 }

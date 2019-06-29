@@ -22,6 +22,9 @@
     <Filter Include="Visitor">
       <UniqueIdentifier>{40a95b76-48c4-48cf-a575-0cb97ba09097}</UniqueIdentifier>
     </Filter>
+    <Filter Include="FactoryMethod">
+      <UniqueIdentifier>{07703d6e-c639-4a24-bb5d-f00b28043184}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="sources\AbstractFactory.h">
@@ -44,6 +47,9 @@
     </ClInclude>
     <ClInclude Include="sources\Visitor\VisitorSample.h">
       <Filter>Visitor</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\FactoryMethod\FactoryMethodSample.h">
+      <Filter>FactoryMethod</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
