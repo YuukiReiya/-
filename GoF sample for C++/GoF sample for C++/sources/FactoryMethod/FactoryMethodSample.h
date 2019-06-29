@@ -1,5 +1,5 @@
 /*!
-	@fExtention	FactoryMethodSample.h
+	@file	FactoryMethodSample.h
 	@date	2019/06/16
 	@author	番場 宥輝
 	@brief	ファクトリーメソッドのサンプルコード
