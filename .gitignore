@@ -9,6 +9,9 @@
 *.idb
 *.user
 *.ilk
+<<<<<<< HEAD
 ~$コーディング講座 最終回.pptx
 GoF sample for C++/.vs/GoF sample for C++/v15/Browse.VC.opendb
+=======
+>>>>>>> bdd7e36... パワポ更新
 GoF sample for C++/.vs/
