@@ -1,6 +1,6 @@
 /*!
 	@file	FactoryMethodSample.h
-	@date	2019/06/16
+	@date	2019/06/29
 	@author	番場 宥輝
 	@brief	ファクトリーメソッドのサンプルコード
 */

@@ -11,6 +11,7 @@
 #include "Adapter/AdapterSample.h"
 #include "FactoryMethod/FactoryMethodSample.h"
 #include "AbstractFactory/AbstractFactorySample.h"
+#include "TemplateMethod/TemplateMethodSample.h"
 #include "Visitor/VisitorSample.h"
 
 /*!
@@ -30,35 +31,42 @@ using namespace GoF;
 	@brief	シングルトンのサンプルコード
 	@detail	コメントアウトでON/OFF切り替えが可能
 */
-//#define SINGLETON
+#define SINGLETON
 
 /*!
 	@def	ADAPTER
 	@brief	アダプターのサンプルコード
 	@detail	コメントアウトでON/OFF切り替えが可能
 */
-//#define ADAPTER
+#define ADAPTER
 
 /*!
 	@def	FACTORY_METHOD
 	@brief	ファクトリーメソッドのサンプルコード
 	@detail	コメントアウトでON/OFF切り替えが可能
 */
-//#define FACTORY_METHOD
+#define FACTORY_METHOD
 
 /*!
 	@def	ABSTRACT_FACTORY
 	@brief	アブストラクトファクトリーのサンプルコード
 	@detail	コメントアウトでON/OFF切り替えが可能
 */
-//#define ABSTRACT_FACTORY
+#define ABSTRACT_FACTORY
 
 /*!
 	@def	ITERATOR
 	@brief	イテレータのサンプルコード
 	@detail	コメントアウトでON/OFF切り替えが可能
 */
-//#define ITERATOR
+#define ITERATOR
+
+/*!
+	@def	TEMPLATE_METHOD
+	@brief	テンプレートメソッドのサンプルコード
+	@detail	コメントアウトでON/OFF切り替えが可能
+*/
+#define TEMPLATE_METHOD
 
 /*!
 	@def	VIVITOR
@@ -306,6 +314,52 @@ int main()
 	//	要素開放
 	pCharacters.clear();
 #endif // ITERATOR
+#pragma endregion
+
+#pragma region テンプレートメソッド
+#ifdef TEMPLATE_METHOD
+	cout << endl;
+	cout << "↓テンプレートメソッドのサンプルコード↓" << endl;
+
+	//	関数テンプレートのサンプル
+	TemplateMethod::FuncSample();
+	
+	//	クラステンプレート
+	//	一時的に自己定義
+	TemplateMethod::CTemplate<TemplateMethod::SBase>*pTemplateClass = new TemplateMethod::CTemplate<TemplateMethod::SBase>();
+	pTemplateClass->Func();
+
+	//	メンバ関数テンプレートの利用
+	pTemplateClass->MemberFunc<int>(10);
+
+	//	メンバ変数テンプレートの利用
+	//NOTE:今回は"SBase"を継承しているのでメンバ型は"SBase"
+	TemplateMethod::SBase tmp;//セットする値
+	pTemplateClass->SetValue(tmp);
+	auto getValue = pTemplateClass->GetValue();
+
+	//int型なら以下
+	//int tmp = 99;//セットする値
+	//pTemplateClass->SetValue(tmp);
+	//auto getValue = pTemplateClass->GetValue();//99が取れるはず...
+
+	//	エイリアステンプレートのサンプル
+	cout << "IntArray4型のg_IA4の中身" << endl;
+	for (auto it: TemplateMethod::g_IA4)
+	{
+		//Iteratorパターンのおさらい
+		cout  <<it << endl;
+	}
+
+	//===========================================================
+	//	クラステンプレートの継承利用
+	//===========================================================
+	TemplateMethod::CInstance* pTemplateMethodInst = new TemplateMethod::CInstance;
+	pTemplateMethodInst->Func();
+	TemplateMethod::CInt* pTemplateMethodInt = new TemplateMethod::CInt;
+	pTemplateMethodInt->Func();
+
+#endif // TEMPLATE_METHOD
 #pragma endregion
 
 #pragma region ビジター

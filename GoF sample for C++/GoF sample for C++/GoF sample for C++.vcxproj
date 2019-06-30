@@ -27,6 +27,7 @@
     <ClInclude Include="sources\Singleton\Sample1.h" />
     <ClInclude Include="sources\Singleton\Sample2.h" />
     <ClInclude Include="sources\Singleton\SingletonSample.h" />
+    <ClInclude Include="sources\TemplateMethod\TemplateMethodSample.h" />
     <ClInclude Include="sources\Visitor\VisitorSample.h" />
   </ItemGroup>
   <ItemGroup>

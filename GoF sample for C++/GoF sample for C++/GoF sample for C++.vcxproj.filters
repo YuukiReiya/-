@@ -28,6 +28,9 @@
     <Filter Include="AbstractFactory">
       <UniqueIdentifier>{6797cd7a-f9ed-4764-89a9-a23e453b23bc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="TemplateMethod">
+      <UniqueIdentifier>{83b103a4-b445-411e-b93b-314c30ede5fd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="sources\AbstractFactory.h">
@@ -56,6 +59,9 @@
     </ClInclude>
     <ClInclude Include="sources\AbstractFactory\AbstractFactorySample.h">
       <Filter>AbstractFactory</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\TemplateMethod\TemplateMethodSample.h">
+      <Filter>TemplateMethod</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

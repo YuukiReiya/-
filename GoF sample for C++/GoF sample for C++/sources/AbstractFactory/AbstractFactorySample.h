@@ -1,8 +1,8 @@
 /*!
 	@file	AbstractFactorySample.h
-	@date	2019/06/16
+	@date	2019/06/29
 	@author	番場 宥輝
-	@brief	ファクトリーメソッドのサンプルコード
+	@brief	アブストラクトファクトリーのサンプルコード
 
 	NOTE:	AbstractFactory.hの方に滅茶苦茶細かく書いています。
 			ただ長くなりすぎて...
@@ -348,7 +348,6 @@ namespace GoF {
 #pragma endregion
 
 #pragma endregion
-
 
 	}
 }
